@@ -2,6 +2,6 @@ version: "3.9"
 services:
   app1:
     container_name: app1
-    image: ghcr.io/konovalov-maksim/app1:latest
+    image: ghcr.io/konovalov-maksim/app1:test-gh-actions
 #    env_file: env/${PROFILE}.env
     restart: always

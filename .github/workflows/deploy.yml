@@ -1,0 +1,67 @@
+name: Deploy image to Docker remote host
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'App'
+        required: true
+        type: choice
+        options:
+          - app1
+          - app2
+        default: app1
+      tag:
+        description: 'Tag'
+        required: true
+        type: string
+        default: latest
+      profile:
+        description: Profile
+        type: choice
+        options:
+          - dev
+          - prod
+        default: dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GH_TOKEN }}
+
+#      - uses: hoverkraft-tech/compose-action@v0.0.0
+#        with:
+#          compose-file: ./${{ inputs.app }}/docker-compose.yml
+#
+#          # Description: Services to perform docker-compose up.
+#          #
+#          services: ""
+#
+#          # Description: Additional options to pass to `docker-compose up` command.
+#          #
+#          # Default:
+#          up-flags: ""
+#
+#          # Description: Additional options to pass to `docker-compose down` command.
+#          #
+#          # Default:
+#          down-flags: ""
+#
+#          # Description: Additional options to pass to `docker-compose` command.
+#          #
+#          # Default:
+#          compose-flags: ""
+#
+#          # Description: Current working directory
+#          #
+#          # Default: ${{ github.workspace }}
+#          cwd: ""

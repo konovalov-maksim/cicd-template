@@ -1,4 +1,4 @@
-name: Build
+name: Build and push image
 
 on:
   workflow_dispatch:
@@ -6,7 +6,11 @@ on:
       app:
         description: 'App'
         required: true
-        type: string
+        type: choice
+        options:
+          - app1
+          - app2
+        default: app1
 
 jobs:
   build:
@@ -17,10 +21,6 @@ jobs:
     steps:
       - name: Checkout project sources
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          repository: 'konovalov-maksim/gp-scraper'
-          ref: 'gh-actions'
 
       - uses: actions/setup-java@v4
         with:

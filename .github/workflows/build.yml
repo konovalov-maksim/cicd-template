@@ -6,10 +6,7 @@ on:
       app:
         description: 'App'
         required: true
-        type: choice
-        options:
-          - app1
-          - app2
+        type: string
 
 env:
   APP_NAME: app1
@@ -23,6 +20,9 @@ jobs:
     steps:
       - name: Checkout project sources
         uses: actions/checkout@v4
+        with:
+          repository: 'https://github.com/konovalov-maksim/gp-scraper/'
+          ref: 'gh-actions'
 
       - uses: actions/setup-java@v4
         with:

@@ -38,30 +38,10 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GH_TOKEN }}
 
-#      - uses: hoverkraft-tech/compose-action@v0.0.0
-#        with:
-#          compose-file: ./${{ inputs.app }}/docker-compose.yml
-#
-#          # Description: Services to perform docker-compose up.
-#          #
-#          services: ""
-#
-#          # Description: Additional options to pass to `docker-compose up` command.
-#          #
-#          # Default:
-#          up-flags: ""
-#
-#          # Description: Additional options to pass to `docker-compose down` command.
-#          #
-#          # Default:
-#          down-flags: ""
-#
-#          # Description: Additional options to pass to `docker-compose` command.
-#          #
-#          # Default:
-#          compose-flags: ""
-#
-#          # Description: Current working directory
-#          #
-#          # Default: ${{ github.workspace }}
-#          cwd: ""
+      - name: Docker-Compose Remote Deployment
+        uses: masterjanic/docker-compose-ssh-deployment@master
+        with:
+          docker_compose_filename: ./{{ inputs.app }}/docker-compose.yml
+          ssh_host: 23.95.218.206
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh_user: ${{ secrets.SSH_USER }}

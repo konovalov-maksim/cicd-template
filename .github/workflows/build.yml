@@ -21,7 +21,7 @@ jobs:
       - name: Checkout project sources
         uses: actions/checkout@v4
         with:
-          repository: 'https://github.com/konovalov-maksim/gp-scraper/'
+          repository: 'konovalov-maksim/gp-scraper'
           ref: 'gh-actions'
 
       - uses: actions/setup-java@v4

@@ -10,10 +10,6 @@ on:
         options:
           - app1
           - app2
-      branch:
-        description: 'Branch'
-        required: true
-        type: string
 
 env:
   APP_NAME: app1
@@ -27,8 +23,6 @@ jobs:
     steps:
       - name: Checkout project sources
         uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.branch }}
 
       - uses: actions/setup-java@v4
         with:
@@ -36,7 +30,7 @@ jobs:
           java-version: '17'
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
 
       - name: Run build with Gradle Wrapper
         run: ./gradlew ${{ inputs.app }}:build

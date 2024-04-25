@@ -41,7 +41,7 @@ jobs:
       - name: Docker-Compose Remote Deployment
         uses: masterjanic/docker-compose-ssh-deployment@1.0.2
         with:
-          docker_compose_filename: {{ inputs.app }}/docker-compose.yml
+          docker_compose_filename: ./{{ inputs.app }}/docker-compose.yml
           ssh_host: 23.95.218.206
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh_user: ${{ secrets.SSH_USER }}

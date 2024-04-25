@@ -46,4 +46,4 @@ jobs:
           ssh_cert: ${{ secrets.SSH_CERT }}
           ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Run container on remote host
-        run: docker-compose --context remote up -d
+        run: docker-compose --context remote -f ./app1/docker-compose.yml up -d

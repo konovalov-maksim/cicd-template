@@ -52,5 +52,6 @@ jobs:
       - name: Run container on remote host
         env:
           PROFILE: ${{ inputs.profile }}
+          COMPOSE_PROJECT_NAME: ${{ inputs.profile }}
           TAG: ${{ inputs.tag }}
         run: docker-compose --context remote -f ./${{ inputs.app }}/docker-compose.yml up -d

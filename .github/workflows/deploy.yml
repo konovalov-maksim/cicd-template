@@ -50,4 +50,6 @@ jobs:
           ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Run container on remote host
-        run: TAG=${{ inputs.tag }} docker-compose --context remote -f ./${{ inputs.app }}/docker-compose.yml up -d
+        env:
+          TAG: ${{ inputs.tag }}
+        run: docker-compose --context remote -f ./${{ inputs.app }}/docker-compose.yml up -d

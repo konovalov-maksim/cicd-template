@@ -52,6 +52,7 @@ jobs:
       - name: Run container on remote host
         uses: hoverkraft-tech/compose-action@v1.5.1
         with:
-          compose-file: ./{{ inputs.app }}/docker-compose.yml
+          compose-file: app1/docker-compose.yml
         env:
           TAG: test-gh-actions
+          DOCKER_CONTEXT: remote

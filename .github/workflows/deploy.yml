@@ -48,5 +48,10 @@ jobs:
           context_name: remote
           ssh_cert: ${{ secrets.SSH_CERT }}
           ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Run container on remote host
-        run: docker-compose --context remote -f app1/docker-compose.yml up -d
+        uses: hoverkraft-tech/compose-action@v1.5.1
+        with:
+          compose-file: ./{{ inputs.app }}/docker-compose.yml
+        env:
+          TAG: test-gh-actions

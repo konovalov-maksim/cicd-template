@@ -1,7 +1,7 @@
 version: "3.9"
 services:
-  app2:
-    container_name: app2
+  app1:
+    container_name: app2-${PROFILE}
     image: ghcr.io/konovalov-maksim/app2:${TAG}
-#    env_file: env/${PROFILE}.env
+    env_file: env/${PROFILE}.env
     restart: always

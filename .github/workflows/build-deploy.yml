@@ -1,4 +1,4 @@
-name: Build and push image
+name: Build and deploy
 
 on:
   workflow_dispatch:
@@ -11,6 +11,28 @@ on:
           - app1
           - app2
         default: app1
+      shouldBuild:
+        description: 'Should build'
+        required: true
+        type: boolean
+        default: false
+      shouldDeploy:
+        description: 'Should deploy'
+        required: true
+        type: boolean
+        default: false
+      tag:
+        description: 'Tag'
+        required: true
+        type: string
+        default: latest
+      profile:
+        description: Profile
+        type: choice
+        options:
+          - dev
+          - prod
+        default: dev
 
 jobs:
   build:

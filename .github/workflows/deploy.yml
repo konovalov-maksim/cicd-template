@@ -1,4 +1,4 @@
-name: Deploy image to Docker remote host
+name: Deploy
 
 on:
   workflow_dispatch:
@@ -25,7 +25,7 @@ on:
         default: dev
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read

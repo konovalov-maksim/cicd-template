@@ -44,7 +44,7 @@ jobs:
       - name: Set up Docker context
         uses: arwynfr/actions-docker-context@v2
         with:
-          docker_host: 'ssh://root@23.95.218.206'
+          docker_host: 'ssh://${{ secrets.SSH_USER }}@${{ secrets.SERVER_HOST }}
           context_name: remote
           ssh_cert: ${{ secrets.SSH_CERT }}
           ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}

@@ -23,7 +23,6 @@ on:
         default: false
       tag:
         description: 'Tag'
-        required: true
         type: string
         default: latest
       profile:
@@ -57,15 +56,15 @@ jobs:
           java-version: '17'
 
       - name: Setup Gradle
-        if: shouldBuild
+        if: inputs.shouldBuild
         uses: gradle/gradle-build-action@v3
 
       - name: Run build with Gradle Wrapper
-        if: shouldBuild
+        if: inputs.shouldBuild
         run: ./gradlew ${{ inputs.app }}:build
 
       - name: Build and push Docker image
-        if: shouldBuild
+        if: inputs.shouldBuild
         uses: docker/build-push-action@v5
         with:
           context: ./${{ inputs.app }}
@@ -76,7 +75,7 @@ jobs:
 
 
       - name: Set up Docker context
-        if: shouldDeploy
+        if: inputs.shouldDeploy
         uses: arwynfr/actions-docker-context@v2
         with:
           docker_host: ssh://${{ secrets.SSH_USER }}@${{ secrets.SERVER_HOST }}
@@ -85,7 +84,7 @@ jobs:
           ssh_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Run container on remote host
-        if: shouldDeploy
+        if: inputs.shouldDeploy
         env:
           PROFILE: ${{ inputs.profile }}
           COMPOSE_PROJECT_NAME: ${{ inputs.profile }}
